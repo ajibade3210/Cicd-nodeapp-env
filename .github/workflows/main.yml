@@ -28,8 +28,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: "cicd-nodeapp"
-          environment_name: "cicd-nodeapp-env"
+          application_name: "cicd-nodeapp-demo"
+          environment_name: "cicd-nodeapp-demo-env"
           version_label: ${{ github.sha }}
           region: us-east-1
           deployment_package: cicd-nodeapp.zip
