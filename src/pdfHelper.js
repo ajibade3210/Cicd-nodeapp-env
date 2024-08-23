@@ -9,6 +9,7 @@ const saveToPdf = async html => {
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: "networkidle0" });
 
+  // random
   const pdfBuffer = await page.pdf({
     format: "A4",
     printBackground: true,
