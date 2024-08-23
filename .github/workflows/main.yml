@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
-        
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -19,7 +19,7 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        
+
       - name: Generate Deployment Package
         run: zip -r cicd-nodeapp.zip .
 
@@ -30,6 +30,6 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: "cicd-nodeapp"
           environment_name: "cicd-nodeapp-env"
-          version_label: 12345
+          version_label: ${{ github.sha }}
           region: us-east-1
           deployment_package: cicd-nodeapp.zip
