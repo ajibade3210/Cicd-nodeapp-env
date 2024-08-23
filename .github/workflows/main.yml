@@ -1,0 +1,31 @@
+name: CICD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: CHeckout Source
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        uses: npm install
+      - name: Generate Deployment Package
+        run: zip -r cicd-nodeapp.zip .
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: "cicd-nodeapp"
+          environment_name: "cicd-nodeapp-env"
+          version_label: 12345
+          region: us-east-1
+          deployment_package: cicd-nodeapp.zip
