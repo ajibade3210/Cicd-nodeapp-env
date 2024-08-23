@@ -46,3 +46,6 @@ jobs:
           version_label: "cicd-test-${{ steps.format-time.outputs.replaced }}"
           region: us-east-1
           deployment_package: cicd-nodeapp-demo.zip
+
+      - name: Deployed!
+        run: echo App deployed to ELB
