@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Generate Deployment Package
-        run: zip -r cicd-nodeapp.zip .
+        run: zip -r cicd-nodeapp-demo.zip .
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v22
@@ -32,4 +32,4 @@ jobs:
           environment_name: "cicd-nodeapp-demo-env"
           version_label: ${{ github.sha }}
           region: us-east-1
-          deployment_package: cicd-nodeapp.zip
+          deployment_package: cicd-nodeapp-demo.zip
