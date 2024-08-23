@@ -2,7 +2,10 @@ const puppeteer = require("puppeteer");
 
 const saveToPdf = async html => {
   const browser = await puppeteer.launch({
+    executablePath: "/usr/bin/chromium",
+    headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    debug: true,
   });
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: "networkidle0" });
