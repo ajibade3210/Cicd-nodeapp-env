@@ -11,7 +11,7 @@ app.get("/test", (_req, res) => {
   res.status(200).send("Hello world");
 });
 
-app.post("/download/pdf", async (req, res, next) => {
+app.post("/pdf", async (req, res, next) => {
   try {
     console.log("req.body: ", req.body);
     const { payslipName, body } = req.body;

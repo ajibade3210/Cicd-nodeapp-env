@@ -1,10 +1,6 @@
 const puppeteer = require("puppeteer");
 
 const saveToPdf = async html => {
-  // const options =
-  //   process.env.NODE_ENV === "production"
-  //     ? { executablePath: "/usr/bin/chromium-browser" }
-  //     : {};
   const prod = {
     env: {
       NODE_ENV: "production",
