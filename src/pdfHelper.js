@@ -1,12 +1,17 @@
 const puppeteer = require("puppeteer");
 
 const saveToPdf = async html => {
+  const options =
+    process.env.NODE_ENV === "production"
+      ? { executablePath: "/usr/bin/chromium-browser" }
+      : {};
+
   const browser = await puppeteer.launch({
-    executablePath: "/usr/bin/chromium-browser",
+    ...options,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
-  await page.setContent(html, { waitUntil: "networkidle0" });
+  await page.setContent(html, { waitUntil: "networkidle2" });
 
   // random
   const pdfBuffer = await page.pdf({
