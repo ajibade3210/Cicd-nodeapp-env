@@ -1,13 +1,13 @@
 const puppeteer = require("puppeteer");
 
 const saveToPdf = async html => {
-  const options =
-    process.env.NODE_ENV === "production"
-      ? { executablePath: "/usr/bin/chromium-browser" }
-      : {};
+  // const options =
+  //   process.env.NODE_ENV === "production"
+  //     ? { executablePath: "/usr/bin/chromium-browser" }
+  //     : {};
 
   const browser = await puppeteer.launch({
-    ...options,
+    executablePath: "/usr/bin/chromium-browser",
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
