@@ -3,7 +3,6 @@ const puppeteer = require("puppeteer");
 const saveToPdf = async html => {
   const browser = await puppeteer.launch({
     executablePath: "/usr/bin/chromium-browser",
-    headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
