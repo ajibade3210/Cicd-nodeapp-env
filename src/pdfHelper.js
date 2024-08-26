@@ -5,9 +5,17 @@ const saveToPdf = async html => {
   //   process.env.NODE_ENV === "production"
   //     ? { executablePath: "/usr/bin/chromium-browser" }
   //     : {};
+  const prod = {
+    env: {
+      NODE_ENV: "production",
+    },
+  };
 
   const browser = await puppeteer.launch({
-    executablePath: "/usr/bin/chromium-browser",
+    executablePath:
+      prod.env.NODE_ENV === "production"
+        ? "/usr/bin/chromium-browser"
+        : "",
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
@@ -17,7 +25,7 @@ const saveToPdf = async html => {
   const pdfBuffer = await page.pdf({
     format: "A4",
     printBackground: true,
-    preferCSSPageSize: true
+    preferCSSPageSize: true,
   });
 
   await browser.close();
